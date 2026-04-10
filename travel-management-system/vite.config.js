@@ -32,7 +32,7 @@ export default defineConfig({
   ],
   server: {
     proxy: {
-      '/api': 'https://voyago-trvel-1.onrender.com' // Proxy all /api requests to Render
+      '/api': 'https://voyago-trvel-2.onrender.com' // Proxy all /api requests to Render
     }
   }
 })
