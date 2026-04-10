@@ -5,6 +5,8 @@ import HomePage from './components/HomePage';
 import Flights from './components/Flights';
 import Login from './components/Login';
 import Register from './components/Register';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
 import Hotel_booking from './components/Hotel-booking/Hotel_booking';
 import CarRentalPage from './components/Car-rental/CarRentalPage';
 import TrainBookingPage from './components/TrainBooking/TrainBookingPage';
@@ -35,6 +37,8 @@ function App() {
         {/* Public Routes */}
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
 
         {/* Protected Routes — requires valid JWT */}
         <Route path="/home"         element={<ProtectedRoute><HomePage /></ProtectedRoute>} />

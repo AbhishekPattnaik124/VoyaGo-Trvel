@@ -280,6 +280,64 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+// Forgot Password
+app.post('/api/forgot-password', async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) return res.status(400).json({ error: "Email is required" });
+
+    const user = await User.findOne({ email: email.toLowerCase() });
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "15m" });
+    const resetLink = `https://voya-go-trvel.vercel.app/reset-password/${token}`;
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
+
+    const mailOptions = {
+      from: `"VoyaGo Accounts" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: "VoyaGo - Password Reset",
+      html: `<h2>Password Reset Request</h2><p>Click <a href="${resetLink}">here</a> to reset your password. This link expires in 15 minutes.</p>`
+    };
+
+    await transporter.sendMail(mailOptions);
+    res.json({ success: true, message: "Reset link sent to your email" });
+  } catch (err) {
+    console.error("Forgot password error:", err);
+    res.status(500).json({ error: "Error sending reset link" });
+  }
+});
+
+// Reset Password
+app.post('/api/reset-password/:token', async (req, res) => {
+  try {
+    const { token } = req.params;
+    const { password } = req.body;
+
+    if (!password || password.length < 6) return res.status(400).json({ error: "Password must be at least 6 characters" });
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id);
+
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    user.password = password; // pre-save hook will hash it
+    await user.save();
+
+    res.json({ success: true, message: "Password reset successful" });
+  } catch (err) {
+    console.error("Reset password error:", err);
+    res.status(400).json({ error: "Invalid or expired token" });
+  }
+});
+
 // Get current user (protected)
 app.get('/api/me', protect, async (req, res) => {
   res.json({ success: true, user: req.user.toPublicJSON ? req.user.toPublicJSON() : req.user });
