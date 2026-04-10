@@ -33,20 +33,8 @@ const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:5173,ht
 
 app.use(cors({
   origin: (origin, callback) => {
-    // 1. Allow requests with no origin (mobile apps, curl)
-    if (!origin) return callback(null, true);
-    
-    // 2. Allow explicitly defined origins
-    if (allowedOrigins.includes(origin)) return callback(null, true);
-
-    // 3. Allow common deployment subdomains automatically
-    const isDeploymentSubdomain = /.*\.onrender\.com$/.test(origin) || /.*\.vercel\.app$/.test(origin);
-    
-    if (isDeploymentSubdomain || process.env.NODE_ENV !== 'production') {
-      return callback(null, true);
-    }
-    
-    callback(new Error(`CORS blocked for origin: ${origin}`));
+    // Permissive CORS for deployed environments (Render, Vercel, Netlify, mobile apps, local)
+    callback(null, true);
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
@@ -243,7 +231,12 @@ app.post('/api/register', async (req, res) => {
     });
   } catch (err) {
     console.error('[VoyaGo] Register error:', err);
-    res.status(500).json({ success: false, message: 'Registration failed. Please try again.' });
+    res.status(500).json({ 
+      success: false, 
+      message: 'Registration failed. Please try again.',
+      error: err.message, 
+      stack: process.env.NODE_ENV !== 'production' ? err.stack : undefined 
+    });
   }
 });
 
@@ -283,7 +276,12 @@ app.post('/api/login', async (req, res) => {
     });
   } catch (err) {
     console.error('[VoyaGo] Login error:', err);
-    res.status(500).json({ success: false, message: 'Login failed. Please try again.' });
+    res.status(500).json({ 
+      success: false, 
+      message: 'Login failed. Please try again.',
+      error: err.message,
+      stack: process.env.NODE_ENV !== 'production' ? err.stack : undefined 
+    });
   }
 });
 
