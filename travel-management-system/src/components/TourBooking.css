@@ -1,0 +1,220 @@
+.tour-booking-page {
+    background: #121521;
+    min-height: 100vh;
+    color: white;
+}
+
+.tour-booking-container {
+    padding: 8rem 3rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tour-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.tour-subtitle {
+    font-size: 1.2rem;
+    color: #ccc;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+}
+
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.package-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.package-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.package-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.package-price {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #61dafb;
+    border: 1px solid rgba(97, 218, 251, 0.5);
+}
+
+.package-info {
+    padding: 1.5rem;
+}
+
+.package-info h3 {
+    margin: 0 0 10px;
+    font-size: 1.4rem;
+    color: #fff;
+}
+
+.package-dest {
+    color: #00cec9;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.package-desc {
+    color: #aaa;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.btn-book {
+    width: 100%;
+    background: linear-gradient(135deg, #61dafb, #4fa8c4);
+    color: #1a1e29;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.btn-book:hover {
+    opacity: 0.9;
+}
+
+.booking-details-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.booking-details-content {
+    background: #1a1e29;
+    padding: 2.5rem;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 450px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.booking-details-content h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #61dafb;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: #282c35;
+    color: white;
+}
+
+.booking-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn-cancel {
+    flex: 1;
+    background: transparent;
+    border: 1px solid #666;
+    color: #ccc;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-book {
+    flex: 1;
+}
+
+.message-banner {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.message-banner.success {
+    background: rgba(46, 204, 113, 0.2);
+    border: 1px solid #2ecc71;
+    color: #2ecc71;
+}
+
+.message-banner.error {
+    background: rgba(231, 76, 60, 0.2);
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+    .tour-booking-container { padding: 6rem 2rem 2rem; }
+}
+@media (max-width: 768px) {
+    .tour-booking-container { padding: 5rem 1rem 1rem; }
+    .tour-title { font-size: 2.5rem; }
+    .packages-grid { grid-template-columns: 1fr; }
+    .booking-actions { flex-direction: column; }
+    .booking-details-content { padding: 1.5rem; }
+}

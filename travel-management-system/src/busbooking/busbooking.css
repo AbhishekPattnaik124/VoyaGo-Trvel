@@ -1,0 +1,195 @@
+.bus-booking-container {
+  font-family: Arial, sans-serif;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+/* --- Search Results Page --- */
+.search-results {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bus-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bus-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.bus-info h3 {
+  margin: 0 0 5px;
+  color: #007bff;
+}
+
+.bus-fare-action {
+  text-align: right;
+}
+
+.fare-label {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #28a745;
+  display: block;
+}
+
+.seats-available {
+  font-size: 0.9em;
+  color: #666;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.bus-card button, .selected-summary button, .passenger-details-form button, .payment-options button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.bus-card button:hover, .selected-summary button:hover, .passenger-details-form button:hover, .payment-options button:hover {
+  background-color: #0056b3;
+}
+
+/* --- Seat Selection Page --- */
+.seat-selection-layout {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.seating-plan {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  flex: 2;
+}
+
+.seat-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+.seat {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.seat.available {
+  background-color: #e9e9e9;
+}
+
+.seat.available:hover {
+  background-color: #dcdcdc;
+}
+
+.seat.selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.selected-summary {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  text-align: center;
+}
+
+/* --- Passenger Details Page --- */
+.passenger-details-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.passenger-form-group {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.passenger-form-group h3 {
+  margin-top: 0;
+  color: #007bff;
+}
+
+.passenger-form-group input,
+.passenger-form-group select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* --- Payment Page --- */
+.payment-summary, .payment-options {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.payment-options button {
+  margin-right: 10px;
+}
+
+/* --- Confirmation Page --- */
+.confirmation-details {
+  background-color: #eaf7ed;
+  border: 2px solid #28a745;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.confirmation-details h3 {
+  color: #28a745;
+}
+
+.confirmation-details p {
+  font-size: 1.1em;
+}
+
+.confirmation-details ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+}

@@ -1,0 +1,231 @@
+/* D:\travel-website\travel-management-system\src\components\Car-rental\CarRentalPage.css */
+
+.car-rental-container {
+    max-width: 1050px;
+    margin: 60px auto;
+    padding: 40px;
+    position: relative;
+}
+
+.car-rental-title {
+    background: linear-gradient(135deg, #6c5ce7, #00d2d3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 35px;
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+}
+
+.car-rental-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 50px;
+    padding: 35px;
+    background: rgba(18, 21, 33, 0.65);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.car-rental-input-row {
+    display: flex;
+    gap: 25px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.car-rental-input-group {
+    flex: 1 1 45%;
+    text-align: left;
+}
+
+.car-rental-label {
+    margin-bottom: 10px;
+    display: block;
+    color: #a0aec0;
+    font-size: 0.95em;
+    font-weight: 600;
+}
+
+.car-rental-input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    font-size: 1.05em;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.car-rental-input:focus {
+    border-color: #00d2d3;
+    box-shadow: 0 0 15px rgba(0, 210, 211, 0.4);
+    outline: none;
+}
+
+.car-rental-button {
+    padding: 16px 30px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, #6c5ce7, #00d2d3);
+    color: #ffffff;
+    font-size: 1.1em;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+}
+
+.car-rental-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(108, 92, 231, 0.6);
+}
+
+.car-rental-message {
+    color: #00d2d3;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.car-rental-error {
+    color: #ff7675;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.car-rental-results-title {
+    color: #fff;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    text-align: center;
+}
+
+.car-rental-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.car-rental-card {
+    background: rgba(18, 21, 33, 0.65);
+    backdrop-filter: blur(20px);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+}
+
+.car-rental-card:hover {
+    transform: translateY(-8px);
+    border-color: #00d2d3;
+}
+
+.car-rental-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.car-rental-card h4 {
+    color: #fff;
+    font-size: 1.5em;
+    margin-bottom: 12px;
+}
+
+.car-rental-card p {
+    color: #a0aec0;
+    font-size: 0.95em;
+    margin-bottom: 8px;
+}
+
+.car-rental-price {
+    color: #00d2d3 !important;
+    font-size: 1.5em !important;
+    font-weight: 800;
+    margin: 15px 0;
+}
+
+.car-rental-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.car-rental-modal-content {
+    background: rgba(18, 21, 33, 0.95);
+    padding: 40px;
+    border-radius: 24px;
+    max-width: 600px;
+    width: 90%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+}
+
+.car-rental-modal-title {
+    color: #00d2d3;
+    font-size: 2em;
+    margin-bottom: 25px;
+}
+
+.car-rental-total-price {
+    color: #00d2d3;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 25px;
+}
+
+.car-rental-button.cancel-modal {
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: none;
+}
+.car-rental-button.cancel-modal:hover {
+    background: rgba(255, 118, 117, 0.2);
+    border-color: #ff7675;
+}
+
+.home-icon-container {
+  position: absolute;
+  top: -40px;
+  left: 10px;
+  z-index: 100;
+}
+
+.home-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.1);
+  font-size: 20px;
+  transition: all 0.3s;
+}
+
+.home-icon:hover {
+  background: #00d2d3;
+  color: #000;
+  transform: scale(1.1);
+}

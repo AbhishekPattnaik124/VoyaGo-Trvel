@@ -1,0 +1,226 @@
+/* D:\travel-website\travel-management-system\src\components\TrainBooking\TrainBookingPage.css */
+
+.train-booking-page {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 40px;
+  position: relative;
+}
+
+.train-booking-page h1 {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #6c5ce7, #00d2d3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  color: #00d2d3;
+}
+
+.icon.small {
+  width: 18px;
+  height: 18px;
+  color: #a0aec0;
+  margin-right: 8px;
+}
+
+.message-banner {
+  padding: 15px 20px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.message-banner.success {
+  background-color: rgba(0, 210, 211, 0.1);
+  color: #00d2d3;
+  border: 1px solid rgba(0, 210, 211, 0.3);
+}
+
+.message-banner.error {
+  background-color: rgba(255, 118, 117, 0.1);
+  color: #ff7675;
+  border: 1px solid rgba(255, 118, 117, 0.3);
+}
+
+.search-form, .booking-details-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  background: rgba(18, 21, 33, 0.65);
+  backdrop-filter: blur(20px);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  margin-bottom: 30px;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #a0aec0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-group input {
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  font-size: 1rem;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #00d2d3;
+  box-shadow: 0 0 15px rgba(0, 210, 211, 0.4);
+  outline: none;
+}
+
+.passenger-control button {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  color: #fff;
+  cursor: pointer;
+}
+
+.passenger-control button:hover {
+  background-color: rgba(0, 210, 211, 0.4);
+}
+
+.search-button, .book-button, .confirm-booking-button, .add-dummy-button {
+  background: linear-gradient(135deg, #6c5ce7, #00d2d3);
+  color: #fff;
+  border: none;
+  padding: 16px 25px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+  transition: all 0.3s ease;
+}
+
+.search-button {
+  grid-column: 1 / -1;
+}
+
+.search-button:hover, .book-button:hover, .confirm-booking-button:hover, .add-dummy-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(108, 92, 231, 0.6);
+}
+
+.add-dummy-train-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.train-results h2 {
+  font-size: 2em;
+  color: #fff;
+  margin-bottom: 25px;
+}
+
+.train-card {
+  background: rgba(18, 21, 33, 0.65);
+  backdrop-filter: blur(20px);
+  padding: 25px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: transform 0.3s ease;
+}
+
+.train-card:hover {
+  transform: translateY(-5px);
+  border-color: #00d2d3;
+}
+
+.train-details h3 {
+  color: #00d2d3;
+  font-size: 1.6em;
+  margin-bottom: 12px;
+}
+
+.train-details p {
+  color: #a0aec0;
+  margin: 6px 0;
+}
+
+.booking-form-container {
+  margin-top: 40px;
+  background: rgba(18, 21, 33, 0.8);
+  backdrop-filter: blur(20px);
+  padding: 35px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.booking-form-container h2 {
+  color: #fff;
+  font-size: 2em;
+}
+
+.selected-train-info {
+  background: rgba(108, 92, 231, 0.1);
+  border: 1px solid rgba(108, 92, 231, 0.3);
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
+.selected-train-info h3 {
+  color: #6c5ce7;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.total-price {
+  font-size: 1.5em;
+  font-weight: 800;
+  color: #00d2d3;
+  margin-top: 15px;
+}
+
+.cancel-button {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-button:hover {
+  background: rgba(255, 118, 117, 0.2);
+  border-color: #ff7675;
+}

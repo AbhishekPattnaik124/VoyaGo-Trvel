@@ -1,0 +1,40 @@
+{
+  "name": "voyago-api",
+  "version": "2.0.0",
+  "description": "VoyaGo™ — AI-Powered Travel Management Platform — Backend API",
+  "main": "server.js",
+  "author": "VoyaGo Technologies Pvt. Ltd.",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start":      "node server.js",
+    "safe-start": "node start.js",
+    "dev":        "nodemon server.js",
+    "kill-port":  "powershell -Command \"Get-Process -Id (Get-NetTCPConnection -LocalPort 5000 -ErrorAction SilentlyContinue).OwningProcess -ErrorAction SilentlyContinue | Stop-Process -Force\""
+  },
+  "keywords": [
+    "voyago",
+    "travel",
+    "api",
+    "express",
+    "mongodb",
+    "jwt"
+  ],
+  "dependencies": {
+    "amadeus": "^11.0.0",
+    "axios": "^1.7.2",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^8.4.4",
+    "morgan": "^1.10.1",
+    "nodemailer": "^6.10.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
