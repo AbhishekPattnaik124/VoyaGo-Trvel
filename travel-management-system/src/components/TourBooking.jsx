@@ -57,7 +57,7 @@ const TourBooking = () => {
         endDate.setDate(endDate.getDate() + selectedPackage.days);
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://voyago-trvel-1.onrender.com'}/api/tours/book`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://voyago-trvel-2.onrender.com'}/api/tours/book`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

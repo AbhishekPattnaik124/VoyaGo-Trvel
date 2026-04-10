@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 const directoryPath = path.join(__dirname, 'src');
-const fromString = 'http://localhost:5000';
-const toString = 'https://voyago-trvel-1.onrender.com';
+const fromString = 'https://voyago-trvel-1.onrender.com';
+const toString = 'https://voyago-trvel-2.onrender.com';
 
 function replaceInFile(filePath) {
     let content = fs.readFileSync(filePath, 'utf8');

@@ -29,16 +29,10 @@ const app  = express();
 const PORT = process.env.PORT || 5000;
 
 // ── Security & CORS ──────────────────────────────────────────
-const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173').split(',');
-
 app.use(cors({
-  origin: (origin, callback) => {
-    // Permissive CORS for deployed environments (Render, Vercel, Netlify, mobile apps, local)
-    callback(null, true);
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token'],
+  origin: "https://voya-go-trvel.vercel.app", // your frontend URL
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
 }));
 
 // Trust proxy (for correct IPs behind load balancer / Nginx)

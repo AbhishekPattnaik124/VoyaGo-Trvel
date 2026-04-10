@@ -17,7 +17,7 @@ const CarCategories = [
 ];
 
 // Define your backend API base URL here. This should match where your Node.js server is listening.
-const API_BASE_URL = `${import.meta.env.VITE_API_URL || 'https://voyago-trvel-1.onrender.com'}/api`;
+const API_BASE_URL = `${import.meta.env.VITE_API_URL || 'https://voyago-trvel-2.onrender.com'}/api`;
 
 const CarRentalPage = () => {
     // State for search form inputs

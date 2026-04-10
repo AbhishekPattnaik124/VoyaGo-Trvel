@@ -31,7 +31,7 @@ const TrainBookingPage = () => {
   const [showPayment, setShowPayment] = useState(false);
 
   // Base URL for your backend API
-  const API_BASE_URL = `${import.meta.env.VITE_API_URL || 'https://voyago-trvel-1.onrender.com'}/api`;
+  const API_BASE_URL = `${import.meta.env.VITE_API_URL || 'https://voyago-trvel-2.onrender.com'}/api`;
 
   /**
    * Handles the form submission for searching trains.

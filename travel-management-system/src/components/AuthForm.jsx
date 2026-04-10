@@ -9,7 +9,7 @@ const AuthForm = () => {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
-  const API_BASE_URL = `${import.meta.env.VITE_API_URL || 'https://voyago-trvel-1.onrender.com'}/api`;
+  const API_BASE_URL = `${import.meta.env.VITE_API_URL || 'https://voyago-trvel-2.onrender.com'}/api`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

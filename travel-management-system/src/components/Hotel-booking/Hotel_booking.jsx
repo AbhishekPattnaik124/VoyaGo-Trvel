@@ -32,7 +32,7 @@ const Hotel_booking = () => {
     const [bookingNumRooms, setBookingNumRooms] = useState(1);
     const [bookingNumGuests, setBookingNumGuests] = useState(1);
 
-    const API_BASE_URL = `${import.meta.env.VITE_API_URL || 'https://voyago-trvel-1.onrender.com'}/api`;
+    const API_BASE_URL = `${import.meta.env.VITE_API_URL || 'https://voyago-trvel-2.onrender.com'}/api`;
 
     const fetchHotels = async (searchParams = {}) => {
         setLoading(true); setError(''); setMessage('');

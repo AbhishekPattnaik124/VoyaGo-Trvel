@@ -4,7 +4,7 @@ import './LoginForm.css';
 import { FaUserAlt, FaEnvelope, FaLock, FaCheck } from 'react-icons/fa';
 import Captcha from './Captcha';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'https://voyago-trvel-1.onrender.com';
+const API_BASE = import.meta.env.VITE_API_URL || 'https://voyago-trvel-2.onrender.com';
 
 function Register() {
   const navigate = useNavigate();
