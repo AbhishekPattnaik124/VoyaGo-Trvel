@@ -33,15 +33,24 @@ const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:5173,ht
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (mobile apps, curl, Postman)
-    if (!origin || allowedOrigins.includes(origin) || process.env.NODE_ENV !== 'production') {
+    // 1. Allow requests with no origin (mobile apps, curl)
+    if (!origin) return callback(null, true);
+    
+    // 2. Allow explicitly defined origins
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+
+    // 3. Allow common deployment subdomains automatically
+    const isDeploymentSubdomain = /.*\.onrender\.com$/.test(origin) || /.*\.vercel\.app$/.test(origin);
+    
+    if (isDeploymentSubdomain || process.env.NODE_ENV !== 'production') {
       return callback(null, true);
     }
+    
     callback(new Error(`CORS blocked for origin: ${origin}`));
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token'],
 }));
 
 // Trust proxy (for correct IPs behind load balancer / Nginx)
