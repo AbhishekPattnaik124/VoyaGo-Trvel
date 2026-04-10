@@ -4,7 +4,7 @@ import LiveTrackingMap from '../components/LiveTrackingMap';
 import axios from 'axios';
 import '../components/SharedPremium.css';
 
-const API_BASE_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api`;
+const API_BASE_URL = `${import.meta.env.VITE_API_URL || 'https://voyago-trvel-1.onrender.com'}/api`;
 
 const mockSearchResults = [
   { id: 'bus-1', operator: 'Volvo Multi-Axle', type: 'AC Sleeper', departureTime: '20:00', arrivalTime: '06:00', durationMinutes: 600, duration: '10h', price: 1500, availableSeats: 25, amenities: ['Wi-Fi', 'Blanket'], seatingPlan: { lowerDeck: [['S1', 'S2', 'S3', 'S4'], ['S5', 'S6', 'S7', 'S8'], ['S9', 'S10', 'S11', 'S12']] } },

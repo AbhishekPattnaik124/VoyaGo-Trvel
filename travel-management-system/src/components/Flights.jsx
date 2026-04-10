@@ -5,7 +5,7 @@ import PaymentModal from './PaymentModal';
 import LiveTrackingMap from './LiveTrackingMap';
 import './SharedPremium.css';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_BASE = import.meta.env.VITE_API_URL || 'https://voyago-trvel-1.onrender.com';
 
 const mockFlightsData = [
     { id: 'FL001', airline: 'FlyHigh Airways', departureTime: '2025-09-08T08:00:00Z', arrivalTime: '2025-09-08T11:00:00Z', durationMinutes: 180, duration: '3h 00m', origin: 'JFK', destination: 'LAX', price: 450.75, stops: 0 },

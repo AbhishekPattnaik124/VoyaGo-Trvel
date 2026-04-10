@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaHome, FaTrash, FaDownload, FaCar, FaHotel, FaPlane, FaTrain } from 'react-icons/fa';
 import './MyBookings.css'; // Let's use custom CSS
 
-const API_BASE_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api`;
+const API_BASE_URL = `${import.meta.env.VITE_API_URL || 'https://voyago-trvel-1.onrender.com'}/api`;
 
 const MyBookings = () => {
     const [hotelBookings, setHotelBookings] = useState([]);
