@@ -73,17 +73,9 @@ app.use((req, _res, next) => {
 mongoose.set('strictQuery', true);
 
 const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      maxPoolSize: 10,
-      serverSelectionTimeoutMS: 5000,
-      socketTimeoutMS: 45000,
-    });
-    console.log('✅ [VoyaGo] MongoDB connected successfully');
-  } catch (err) {
-    console.error('❌ [VoyaGo] MongoDB connection failed:', err.message);
-    process.exit(1);
-  }
+  mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log("DB connected"))
+    .catch(err => console.log(err));
 };
 
 connectDB();
@@ -196,16 +188,8 @@ app.use('/api/bus-reservations', busReservRoutes);
 app.use('/api/admin',            adminRoutes);
 
 // ── Health Check ─────────────────────────────────────────────
-app.get('/', (_req, res) => {
-  res.json({
-    success:  true,
-    platform: 'VoyaGo™ Travel Management API',
-    company:  'VoyaGo Technologies Pvt. Ltd.',
-    version:  '2.0.0',
-    status:   'Operational',
-    uptime:   `${Math.floor(process.uptime())}s`,
-    timestamp: new Date().toISOString(),
-  });
+app.get('/', (req, res) => {
+  res.send("Backend is running 🚀");
 });
 
 app.get('/api/health', (_req, res) => {
