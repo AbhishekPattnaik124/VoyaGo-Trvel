@@ -124,8 +124,8 @@ UserSchema.methods.toPublicJSON = function() {
 const User = mongoose.model('User', UserSchema);
 
 // ── JWT Token Helper ─────────────────────────────────────────
-const signToken = (payload, expiresIn = '7d') => {
-  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn });
+const signToken = (payload) => {
+  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1d" });
 };
 
 // ── Auth Middleware ──────────────────────────────────────────
