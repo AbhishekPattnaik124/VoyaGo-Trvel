@@ -196,26 +196,27 @@ app.get('/api/health', (_req, res) => {
 // Register
 app.post('/api/register', async (req, res) => {
   try {
+    console.log("BODY:", req.body);
     const { username, email, password, firstName, lastName } = req.body;
 
     if (!username || !email || !password) {
-      return res.status(400).json({ success: false, message: 'Username, email and password are required' });
+      return res.status(400).json({ error: 'All fields required', success: false, message: 'All fields required' });
     }
 
     if (password.length < 6) {
-      return res.status(400).json({ success: false, message: 'Password must be at least 6 characters' });
+      return res.status(400).json({ error: 'Password must be at least 6 characters', success: false, message: 'Password must be at least 6 characters' });
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return res.status(400).json({ success: false, message: 'Invalid email address' });
+      return res.status(400).json({ error: 'Invalid email address', success: false, message: 'Invalid email address' });
     }
 
     if (await User.findOne({ email: email.toLowerCase() })) {
-      return res.status(409).json({ success: false, message: 'Email already registered' });
+      return res.status(409).json({ error: 'Email already registered', success: false, message: 'Email already registered' });
     }
     if (await User.findOne({ username })) {
-      return res.status(409).json({ success: false, message: 'Username already taken' });
+      return res.status(409).json({ error: 'Username already taken', success: false, message: 'Username already taken' });
     }
 
     const user = new User({ username, email, password, firstName: firstName || '', lastName: lastName || '' });
@@ -230,11 +231,11 @@ app.post('/api/register', async (req, res) => {
       user: user.toPublicJSON(),
     });
   } catch (err) {
-    console.error('[VoyaGo] Register error:', err);
+    console.log("REGISTER ERROR:", err);
     res.status(500).json({ 
+      error: err.message,
       success: false, 
       message: 'Registration failed. Please try again.',
-      error: err.message, 
       stack: process.env.NODE_ENV !== 'production' ? err.stack : undefined 
     });
   }
