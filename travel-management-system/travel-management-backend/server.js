@@ -74,6 +74,8 @@ const UserSchema = new mongoose.Schema({
   avatar:    { type: String, default: '' },
   isActive:  { type: Boolean, default: true },
   lastLogin: { type: Date, default: null },
+  resetOtp:  { type: String },
+  resetOtpExpire: { type: Date },
 }, { timestamps: true });
 
 // Hash password before save
@@ -280,7 +282,7 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// Forgot Password
+// Forgot Password with OTP
 app.post('/api/forgot-password', async (req, res) => {
   try {
     const { email } = req.body;
@@ -289,8 +291,13 @@ app.post('/api/forgot-password', async (req, res) => {
     const user = await User.findOne({ email: email.toLowerCase() });
     if (!user) return res.status(404).json({ error: "User not found" });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "15m" });
-    const resetLink = `https://voya-go-trvel.vercel.app/reset-password/${token}`;
+    // Generate 6 digit OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    
+    // Set OTP and expiration (15 minutes)
+    user.resetOtp = otp;
+    user.resetOtpExpire = Date.now() + 15 * 60 * 1000;
+    await user.save({ validateBeforeSave: false });
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -303,38 +310,56 @@ app.post('/api/forgot-password', async (req, res) => {
     const mailOptions = {
       from: `"VoyaGo Accounts" <${process.env.EMAIL_USER}>`,
       to: email,
-      subject: "VoyaGo - Password Reset",
-      html: `<h2>Password Reset Request</h2><p>Click <a href="${resetLink}">here</a> to reset your password. This link expires in 15 minutes.</p>`
+      subject: "VoyaGo - Your Password Reset OTP",
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 500px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; text-align: center;">
+          <h2 style="color: #333;">Password Reset Verification</h2>
+          <p style="font-size: 16px; color: #555;">Use the following One-Time Password (OTP) to reset your password. It expires in 15 minutes.</p>
+          <div style="margin: 20px 0; padding: 15px; background: #f4f4f4; border-radius: 8px;">
+            <h1 style="margin: 0; letter-spacing: 5px; color: #00b894;">${otp}</h1>
+          </div>
+          <p style="font-size: 14px; color: #888;">If you didn't request a password reset, you can safely ignore this email.</p>
+        </div>
+      `
     };
 
     await transporter.sendMail(mailOptions);
-    res.json({ success: true, message: "Reset link sent to your email" });
+    res.json({ success: true, message: "A 6-digit OTP has been sent to your email" });
   } catch (err) {
-    console.error("Forgot password error:", err);
-    res.status(500).json({ error: "Error sending reset link" });
+    console.error("Forgot password OTP error:", err);
+    res.status(500).json({ error: "Error sending OTP email" });
   }
 });
 
-// Reset Password
-app.post('/api/reset-password/:token', async (req, res) => {
+// Reset Password with OTP
+app.post('/api/reset-password', async (req, res) => {
   try {
-    const { token } = req.params;
-    const { password } = req.body;
+    const { email, otp, password } = req.body;
 
-    if (!password || password.length < 6) return res.status(400).json({ error: "Password must be at least 6 characters" });
+    if (!email || !otp || !password) {
+       return res.status(400).json({ error: "Email, OTP, and new password are required" });
+    }
+    if (password.length < 6) {
+       return res.status(400).json({ error: "Password must be at least 6 characters" });
+    }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findById(decoded.id);
+    const user = await User.findOne({ 
+      email: email.toLowerCase(),
+      resetOtp: otp,
+      resetOtpExpire: { $gt: Date.now() } // Ensure OTP hasn't expired
+    });
 
-    if (!user) return res.status(404).json({ error: "User not found" });
+    if (!user) return res.status(400).json({ error: "Invalid or expired OTP" });
 
     user.password = password; // pre-save hook will hash it
+    user.resetOtp = undefined;
+    user.resetOtpExpire = undefined;
     await user.save();
 
-    res.json({ success: true, message: "Password reset successful" });
+    res.json({ success: true, message: "Password reset successful! You can now log in." });
   } catch (err) {
     console.error("Reset password error:", err);
-    res.status(400).json({ error: "Invalid or expired token" });
+    res.status(500).json({ error: "Failed to reset password" });
   }
 });
 

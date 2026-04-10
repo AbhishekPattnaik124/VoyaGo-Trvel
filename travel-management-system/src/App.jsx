@@ -38,7 +38,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset-password/:token" element={<ResetPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
 
         {/* Protected Routes — requires valid JWT */}
         <Route path="/home"         element={<ProtectedRoute><HomePage /></ProtectedRoute>} />

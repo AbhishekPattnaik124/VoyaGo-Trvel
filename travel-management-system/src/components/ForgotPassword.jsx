@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './LoginForm.css'; // Reusing form styles
 
 const ForgotPassword = () => {
@@ -8,6 +8,7 @@ const ForgotPassword = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +18,8 @@ const ForgotPassword = () => {
 
     try {
       const response = await axios.post("https://voyago-trvel-2.onrender.com/api/forgot-password", { email });
-      setMessage(response.data.message || "Password reset link sent to your email!");
+      setMessage(response.data.message || "OTP sent to your email!");
+      setTimeout(() => navigate('/reset-password', { state: { email } }), 1500);
     } catch (err) {
       setError(err.response?.data?.message || err.response?.data?.error || "Error sending reset link.");
     } finally {
