@@ -7,7 +7,6 @@ A full-stack Travel Management System built using the MERN stack that enables us
 ## 🚀 Live Demo
 
 * 🌐 Frontend: https://voya-go-trvel.vercel.app
-* ⚙️ Backend API: https://voyago-trvel-2.onrender.com
 
 ---
 
